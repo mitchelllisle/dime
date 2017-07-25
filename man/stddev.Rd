@@ -5,7 +5,7 @@
 \title{WIP DOESNT WORK YET
 Standard Deviations of Numerical Columns}
 \usage{
-stddev(column)
+stdev(dplyr::starwars$height)
 }
 \description{
 This functions returns the Standard Deviation

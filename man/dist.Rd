@@ -4,7 +4,7 @@
 \alias{dist}
 \title{Distribution of data based off Categories in column}
 \usage{
-dist(column)
+dist(dplyr::starwars$gender)
 }
 \description{
 This functions works off categorical data. It

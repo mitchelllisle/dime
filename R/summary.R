@@ -4,10 +4,12 @@
 #' 
 #' @param x the data to return types for
 #' 
-#' @example types(dplyr::starwars)
+#' @usage types(dplyr::starwars)
 #' 
 types <- function(x) {
-  sapply(x, class)
+  type_data <- sapply(x, class)
+  
+  return(data.frame(type_data))
 }
 
 #' Distribution of data based off Categories in column
@@ -15,7 +17,7 @@ types <- function(x) {
 #' will return the frequency and percentage of data points
 #' that fit to each distinct category. 
 #' 
-#' @example dist(dplyr::starwars$gender)
+#' @usage dist(dplyr::starwars$gender)
 dist <- function(column) {
   cbind(freq=table(column), percentage=prop.table(table(column))*100)
 }
@@ -26,9 +28,12 @@ dist <- function(column) {
 #' @description This functions returns the Standard Deviation
 #' for a numerical column in a dataset. 
 #' 
-#' @example stdev(dplyr::starwars$height)
-stddev <- function(column) {
+#' @usage stdev(dplyr::starwars)
+stddev <- function(dataset) {
   # TODO Should accept any type, filter our everything except numeric
   # then return dataframe of standard deviations
-  sapply(as.numeric(column), sd(na.rm = TRUE))
+  df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
+  df <- mlr_replace_all_na(df)
+  
+  sapply(df, sd)
 }
