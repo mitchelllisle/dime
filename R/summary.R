@@ -30,8 +30,6 @@ dist <- function(column) {
 #' 
 #' @usage stdev(dplyr::starwars)
 stddev <- function(dataset) {
-  # TODO Should accept any type, filter our everything except numeric
-  # then return dataframe of standard deviations
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
   df <- mlr_replace_all_na(df)
   
