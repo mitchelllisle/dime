@@ -4,7 +4,7 @@
 \alias{types}
 \title{Types for type checking}
 \usage{
-types(x)
+types(dplyr::starwars)
 }
 \arguments{
 \item{x}{the data to return types for}
