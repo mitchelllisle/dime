@@ -7,9 +7,9 @@
 #' @usage types(dplyr::starwars)
 #' 
 types <- function(x) {
-  type_data <- sapply(x, class)
+  type_data <- data.frame(Type = sapply(x, class))
   
-  return(data.frame(type_data))
+  return(type_data)
 }
 
 #' Distribution of data based off Categories in column
@@ -19,7 +19,9 @@ types <- function(x) {
 #' 
 #' @usage dist(dplyr::starwars$gender)
 dist <- function(column) {
-  cbind(freq=table(column), percentage=prop.table(table(column))*100)
+  df <- data.frame(cbind(freq=table(column), percentage=prop.table(table(column))*100))
+  
+  return(df)
 }
 
 
@@ -33,5 +35,7 @@ stddev <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
   df <- mlr_replace_all_na(df)
   
-  sapply(df, sd)
+  stddev_result <- data.frame(StandardDeviation = sapply(df, sd))
+  
+  return(stddev_result)
 }
