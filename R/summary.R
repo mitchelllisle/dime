@@ -6,7 +6,7 @@
 #' 
 #' @usage types(dplyr::starwars)
 #' 
-types <- function(x) {
+dm_types <- function(x) {
   type_data <- data.frame(Type = sapply(x, class))
   
   return(type_data)
@@ -18,7 +18,7 @@ types <- function(x) {
 #' that fit to each distinct category. 
 #' 
 #' @usage dist(dplyr::starwars$gender)
-dist <- function(column) {
+dm_dist <- function(column) {
   df <- data.frame(cbind(freq=table(column), percentage=prop.table(table(column))*100))
   
   return(df)
@@ -31,7 +31,7 @@ dist <- function(column) {
 #' for a numerical column in a dataset. 
 #' 
 #' @usage stdev(dplyr::starwars)
-stddev <- function(dataset) {
+dm_stddev <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
   df <- mlr_replace_all_na(df)
   
