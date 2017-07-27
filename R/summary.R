@@ -20,7 +20,7 @@ dm_types <- function(x) {
 #' @usage dist(dplyr::starwars$gender)
 dm_dist <- function(column) {
   df <- data.frame(cbind(freq=table(column), percentage=prop.table(table(column))*100))
-  
+
   return(df)
 }
 
