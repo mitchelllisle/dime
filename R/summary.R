@@ -25,7 +25,6 @@ dm_dist <- function(column) {
 }
 
 
-#' WIP DOESNT WORK YET
 #' Standard Deviations of Numerical Columns
 #' @description This functions returns the Standard Deviation
 #' for a numerical column in a dataset. 
