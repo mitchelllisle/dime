@@ -2,7 +2,7 @@
 % Please edit documentation in R/summary.R
 \name{dm_types}
 \alias{dm_types}
-\title{Types for type checking}
+\title{Type Checking}
 \usage{
 types(dplyr::starwars)
 }
@@ -10,6 +10,6 @@ types(dplyr::starwars)
 \item{x}{the data to return types for}
 }
 \description{
-This functions returns the types for a given dataset or 
+This functions returns the types for a given dataset or
 field.
 }

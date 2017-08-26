@@ -6,6 +6,9 @@
 \usage{
 dist(dplyr::starwars$gender)
 }
+\arguments{
+\item{column}{the column to run distribution checks on}
+}
 \description{
 This functions works off categorical data. It
 will return the frequency and percentage of data points
