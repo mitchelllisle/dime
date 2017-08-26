@@ -58,3 +58,23 @@ dm_skewness <- function(dataset) {
 
   return(skewness)
 }
+
+
+#' Check the Correlation of numerical data
+#' @description This function returns the correlation of numerical values in a dataset.
+#' Deviations from zero show more positive or negative correlation. Values above approximately 0.75 or below -0.75
+#' are perhaps more interesting as they show a high correlation or high negative correlation.
+#'
+#' Values of 1 and -1 show full positive or negative correlation.
+#'
+#' @param dataset the dataset to run skewness checks on
+#'
+#' @usage dm_cors(dataset = dplyr::starwars)
+dm_cors <- function(dataset) {
+  df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
+  df <- mlr::mlr_replace_all_na(df)
+
+  correlations <- cor(df)
+
+  return(correlations)
+}
