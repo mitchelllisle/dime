@@ -7,6 +7,9 @@ Maintainer: Mitchell Lisle <mitchell.lisle@bigdatr.com>
 Description: Functions for working with machine learning algorithms and
     evaluating data in an exploratory fashion
 License: None
+Suggest: e1071,
+         dplyr,
+         mlr
 Encoding: UTF-8
 LazyData: false
 RoxygenNote: 6.0.1

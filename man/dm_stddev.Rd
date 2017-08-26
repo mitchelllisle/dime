@@ -2,10 +2,12 @@
 % Please edit documentation in R/summary.R
 \name{dm_stddev}
 \alias{dm_stddev}
-\title{WIP DOESNT WORK YET
-Standard Deviations of Numerical Columns}
+\title{Standard Deviations of Numerical Columns}
 \usage{
 stdev(dplyr::starwars)
+}
+\arguments{
+\item{dataset}{the dataset to run stdev checks on}
 }
 \description{
 This functions returns the Standard Deviation
