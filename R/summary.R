@@ -105,3 +105,26 @@ dm_cors <- function(dataset) {
 
   return(correlations)
 }
+
+#' Median Frequency
+#'
+#' @description Calculating the median for a dataframe that has a value
+#' and a frequency is not difficult, but I have not found any simple
+#' implementation to do this. This function will recreate a list, duplicating
+#' the value by the frequency. It is then intuitive to use common stats functions
+#' to get the value you need. E.g. median, mean etc.
+#'
+#' @param value The value that you want to duplicate using;
+#' @param frequency The numner of times that value appears in the data
+#'
+#' @example Suppose you have this data frame:
+#' `x <- data.frame(value = c(1,2,3,4,5), frequency = c(2,5,5,2,6))`
+#' This function will duplicate  items in `value` by the corresponding
+#' frequency in `frequency`. E.g. 1 will get replicated 2 time, 5 will get
+#' replicated 5 times and so on. This will produce a list that `median()`
+#' will work for.
+median_frequency <- function(value, frequency){
+  computed_frequencies <- list(rep(value, times = frequency))
+
+  return(median(computed_frequencies[[1]]))
+}
