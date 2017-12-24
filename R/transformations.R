@@ -43,3 +43,25 @@ census_reshape <- function(data, id){
 
   return(result)
 }
+
+#' Null to NA
+#'
+#' @description I have often come up against issue of 'differing rows' when trying
+#' to bind dataframes together. To counter this it was always a pain. This function
+#' help with this process by converting all NULLs found by missing values and converting
+#' them to either a string 'N/A' or a logical NA.
+#'
+#' @param x the dataframe or list to convert
+#' @param asString whether or not to return the NA as a string or logical.
+#' False = Logical, True = String
+nullToNAString <- function(x, asString = FALSE) {
+  if(asString == FALSE){
+    NAtoApply <- NA
+  } else {
+    NAtoApply <- 'N/A'
+  }
+
+  x[sapply(x, is.null)] <- NAtoApply
+  return(x)
+}
+
