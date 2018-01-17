@@ -79,7 +79,7 @@ dm_stddev <- function(dataset) {
 #' @usage dm_skewness(dataset = dplyr::starwars)
 dm_skewness <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- mlr::mlr_replace_all_na(df)
+  df <- replace_all_na(df)
 
   skewness <- data.frame(apply(df, 2, e1071::skewness))
 
@@ -99,7 +99,7 @@ dm_skewness <- function(dataset) {
 #' @usage dm_cors(dataset = dplyr::starwars)
 dm_cors <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- mlr::mlr_replace_all_na(df)
+  df <- replace_all_na(df)
 
   correlations <- cor(df)
 

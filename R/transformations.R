@@ -65,3 +65,21 @@ nullToNAString <- function(x, asString = FALSE) {
   return(x)
 }
 
+#' Replace all NAs in a column or dataframe
+#'
+#' @description This function is used to replace all NAs within
+#' a column or dataframe. It is useful for when you want to do numerical
+#' arithmetic on a field but are running into issues with NA values
+#'
+replace_all_na <- function (dataframe)
+{
+  if (!is.data.frame(dataframe)) {
+    message("Please supply a dataframe")
+  }
+  else {
+    dataframe[is.na(dataframe)] <- 0
+    data.frame(dataframe)
+  }
+}
+
+
