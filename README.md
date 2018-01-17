@@ -10,5 +10,5 @@ First set your Github PAT token in `.Renviron` or however you prefer to store to
 Then:
 
 ```
-devtools::install_github("termatico/dime", auth_token = Sys.getenv("GITHUB_PAT"))
+devtools::install_github("mitchelllisle/dime", auth_token = Sys.getenv("GITHUB_PAT"))
 ```
