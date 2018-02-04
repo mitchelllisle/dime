@@ -25,19 +25,6 @@ dm_dist <- function(column) {
   return(df)
 }
 
-#' Distribution of data based off Categories in column
-#' @description This functions works off categorical data. It
-#' will return the frequency and percentage of data points
-#' that fit to each distinct category.
-#' @param column the column to run distribution checks on
-#'
-#' @usage dm_dist_column(column = dplyr::starwars$gender)
-dm_dist_column <- function(column) {
-  df <- data.frame(cbind(freq=table(column), percentage=prop.table(table(column))*100))
-
-  return(df)
-}
-
 #' Distribution of data based off Categories in Dataframe
 #' @description This functions works off categorical data. It
 #' will return the frequency and percentage of data points
@@ -46,7 +33,7 @@ dm_dist_column <- function(column) {
 #'
 #' @usage dm_dist_df(data = dplyr::starwars)
 dm_dist_df <- function(data) {
-  df <- lapply(data, dime::dm_dist_column)
+  df <- lapply(data, dime::dm_dist)
 
   return(df)
 }
@@ -62,7 +49,7 @@ dm_dist_df <- function(data) {
 #' @usage stdev(dataset = dplyr::starwars)
 dm_stddev <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- mlr::mlr_replace_all_na(df)
+  df <- replace_all_na(df)
 
   stddev_result <- data.frame(StandardDeviation = sapply(df, sd))
 
