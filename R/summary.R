@@ -82,15 +82,19 @@ dm_skewness <- function(dataset) {
 #' Values of 1 and -1 show full positive or negative correlation.
 #'
 #' @param dataset the dataset to run skewness checks on
+#' @param returnVix wheather to return the reuslts as a correlation matrix or not.
 #'
 #' @usage dm_cors(dataset = dplyr::starwars)
-dm_cors <- function(dataset) {
+dm_cors <- function(dataset, returnViz = FALSE) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
   df <- replace_all_na(df)
 
   correlations <- cor(df)
-
-  return(correlations)
+  if(isTRUE(returnViz)){
+    return(highcharter::hchart(correlations))
+  } else {
+    return(correlations)
+  }
 }
 
 #' Median Frequency

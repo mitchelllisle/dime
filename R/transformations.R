@@ -82,4 +82,21 @@ replace_all_na <- function (dataframe)
   }
 }
 
+#' Split Data for Training and Testing
+#'
+#' @description  This is often a manual step in any tutorial I've used which
+#' I found strange. This is a simple function to split a data set
+#' into a list contain an object of test and train.
+#'
+#' @param data the data to split into train and test objects
+#' @param splitPercentage The percent of data to split for training.
+#' Default is .7 or 70%
+dm_testTainSplit <- function(data, splitPercentage = .7){
+  dt <- sort(sample(nrow(data), nrow(data) * splitPercentage))
+  train <- data[dt,]
+  test <- data[-dt,]
 
+  output <- list(train = train, test = test)
+
+  return(output)
+}
