@@ -115,7 +115,7 @@ dm_cors <- function(dataset, returnViz = FALSE) {
 #' replicated 5 times and so on. This will produce a list that `median()`
 #' will work for.
 median_frequency <- function(value, frequency){
-  computed_frequencies <- list(rep(value, times = frequency))
+  computed_frequencies <- list(rep(as.numeric(value), times = as.numeric(frequency)))
 
   return(median(computed_frequencies[[1]]))
 }
