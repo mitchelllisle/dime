@@ -1,5 +1,6 @@
 
-![](https://user-images.githubusercontent.com/18128531/29739541-9464f858-8a83-11e7-976d-d5ba6a7c8904.png)
+![logo](https://user-images.githubusercontent.com/18128531/43257865-4219a8f8-9114-11e8-83fd-3ab977a926b2.png)
+
 
 # dime
 An R package for evaluating and exploring DIMEnsions related to Machine Learning algorithms and datasets
