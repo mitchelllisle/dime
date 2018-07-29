@@ -3,7 +3,7 @@
 
 
 # dime
-An R package for evaluating and exploring DIMEnsions related to Machine Learning algorithms and datasets
+An R package for evaluating and exploring DIMEnsions related to working with data
 
 #### To Install
 First set your Github PAT token in `.Renviron` or however you prefer to store tokens. 
