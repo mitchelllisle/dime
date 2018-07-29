@@ -1,8 +1,6 @@
 
 ![dimes](https://user-images.githubusercontent.com/18128531/43366070-68d29d34-937a-11e8-9500-a783b3d5ef9e.png)
 
-
-# dime
 An R package for evaluating and exploring DIMEnsions related to working with data
 
 #### To Install
