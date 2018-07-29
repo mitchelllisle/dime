@@ -31,18 +31,6 @@ dm_strclean <- function(words) {
   words <- stringr::str_trim(words)
 }
 
-#' Census Reshape
-#'  @description The census data from ABS typically comes in a wide format. This function will
-#' convert it into a long format as it's often easier to work with and fit for more
-#' purposes.
-#'
-#' @param
-census_reshape <- function(data, id){
-  molten <- melt(data, id = id, na.rm = FALSE)
-  result <- data.frame(molten)
-
-  return(result)
-}
 
 #' Null to NA
 #'
@@ -54,7 +42,7 @@ census_reshape <- function(data, id){
 #' @param x the dataframe or list to convert
 #' @param asString whether or not to return the NA as a string or logical.
 #' False = Logical, True = String
-nullToNAString <- function(x, asString = FALSE) {
+dm_nullToNAString <- function(x, asString = FALSE) {
   if(asString == FALSE){
     NAtoApply <- NA
   } else {
@@ -71,7 +59,7 @@ nullToNAString <- function(x, asString = FALSE) {
 #' a column or dataframe. It is useful for when you want to do numerical
 #' arithmetic on a field but are running into issues with NA values
 #'
-replace_all_na <- function (dataframe)
+dm_replaceAllNA <- function (dataframe)
 {
   if (!is.data.frame(dataframe)) {
     message("Please supply a dataframe")
@@ -91,7 +79,8 @@ replace_all_na <- function (dataframe)
 #' @param data the data to split into train and test objects
 #' @param splitPercentage The percent of data to split for training.
 #' Default is .7 or 70%
-dm_testTainSplit <- function(data, splitPercentage = .7){
+dm_testTainSplit <- function(data, percent = .7){
+  splitPercantage = percent / 100
   dt <- sort(sample(nrow(data), nrow(data) * splitPercentage))
   train <- data[dt,]
   test <- data[-dt,]

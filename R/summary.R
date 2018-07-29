@@ -21,24 +21,10 @@ dm_types <- function(x) {
 #' @usage dist(column = dplyr::starwars$gender)
 dm_dist <- function(column) {
   df <- data.frame(cbind(freq=table(column), percentage=prop.table(table(column))*100))
-
+  df <- tibble::rownames_to_column(df)
+  df <- arrange(df, desc(freq))
   return(df)
 }
-
-#' Distribution of data based off Categories in Dataframe
-#' @description This functions works off categorical data. It
-#' will return the frequency and percentage of data points
-#' that fit to each distinct category.
-#' @param data the data to run distribution checks on
-#'
-#' @usage dm_dist_df(data = dplyr::starwars)
-dm_dist_df <- function(data) {
-  df <- lapply(data, dime::dm_dist)
-
-  return(df)
-}
-
-
 
 #' Standard Deviations of Numerical Columns
 #' @description This functions returns the Standard Deviation
@@ -49,7 +35,7 @@ dm_dist_df <- function(data) {
 #' @usage stdev(dataset = dplyr::starwars)
 dm_stddev <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- replace_all_na(df)
+  df <- dm_replaceAllNA(df)
 
   stddev_result <- data.frame(StandardDeviation = sapply(df, sd))
 
@@ -66,10 +52,11 @@ dm_stddev <- function(dataset) {
 #' @usage dm_skewness(dataset = dplyr::starwars)
 dm_skewness <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- replace_all_na(df)
+  df <- dm_replaceAllNA(df)
 
   skewness <- data.frame(apply(df, 2, e1071::skewness))
-
+  skewness = tibble::rownames_to_column(skewness)
+  names(skewness) <- c('field', 'skewness')
   return(skewness)
 }
 
@@ -82,19 +69,14 @@ dm_skewness <- function(dataset) {
 #' Values of 1 and -1 show full positive or negative correlation.
 #'
 #' @param dataset the dataset to run skewness checks on
-#' @param returnVix wheather to return the reuslts as a correlation matrix or not.
 #'
 #' @usage dm_cors(dataset = dplyr::starwars)
-dm_cors <- function(dataset, returnViz = FALSE) {
+dm_cors <- function(dataset) {
   df <- dataset[sapply(dataset, function(x) is.integer(x) || is.numeric(x) || is.double(x))]
-  df <- replace_all_na(df)
+  df <- dm_replaceAllNA(df)
 
   correlations <- cor(df)
-  if(isTRUE(returnViz)){
-    return(highcharter::hchart(correlations))
-  } else {
-    return(correlations)
-  }
+  return(correlations)
 }
 
 #' Median Frequency
@@ -105,8 +87,8 @@ dm_cors <- function(dataset, returnViz = FALSE) {
 #' the value by the frequency. It is then intuitive to use common stats functions
 #' to get the value you need. E.g. median, mean etc.
 #'
-#' @param value The value that you want to duplicate using;
-#' @param frequency The numner of times that value appears in the data
+#' @param value The value that you want to duplicate
+#' @param frequency The numner of times that value should be duplicated
 #'
 #' @example Suppose you have this data frame:
 #' `x <- data.frame(value = c(1,2,3,4,5), frequency = c(2,5,5,2,6))`
@@ -114,7 +96,9 @@ dm_cors <- function(dataset, returnViz = FALSE) {
 #' frequency in `frequency`. E.g. 1 will get replicated 2 time, 5 will get
 #' replicated 5 times and so on. This will produce a list that `median()`
 #' will work for.
-median_frequency <- function(value, frequency){
+#' # So, with our dataset x, we can get the median using this function:
+#' @usage dm_medianFrequency(x$value, x$frequency)
+dm_medianFrequency <- function(value, frequency){
   computed_frequencies <- list(rep(as.numeric(value), times = as.numeric(frequency)))
 
   return(median(computed_frequencies[[1]]))

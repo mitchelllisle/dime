@@ -1,5 +1,5 @@
 
-![logo](https://user-images.githubusercontent.com/18128531/43257901-6249d72e-9114-11e8-9a8a-1120d5dc082c.png)
+![dimes](https://user-images.githubusercontent.com/18128531/43366070-68d29d34-937a-11e8-9500-a783b3d5ef9e.png)
 
 
 # dime
